@@ -11,24 +11,26 @@ import {Subject} from 'rxjs';
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Tasty Schnitzel',
-      'A super-tasty Schnitzel - just awesome!',
-      'https://www.destinomunique.com.br/wp-content/uploads/2016/11/Schnitzel-Receita-Segredo.jpg',
-      [
-        new Ingredient('Meat', 1),
-        new Ingredient('French Fries', 20)
-      ]),
-    new Recipe(
-      'Big Fat Burger',
-      'What else you need to say?',
-      'https://bigfatburgers.com/wp-content/uploads/2019/07/DoubleBaconCheeseBurger.jpg',
-      [
-        new Ingredient('Buns', 1),
-        new Ingredient('Meat', 1)
-      ])
-  ];
+  // private recipes: Recipe[] = [
+  //   new Recipe(
+  //     'Tasty Schnitzel',
+  //     'A super-tasty Schnitzel - just awesome!',
+  //     'https://www.destinomunique.com.br/wp-content/uploads/2016/11/Schnitzel-Receita-Segredo.jpg',
+  //     [
+  //       new Ingredient('Meat', 1),
+  //       new Ingredient('French Fries', 20)
+  //     ]),
+  //   new Recipe(
+  //     'Big Fat Burger',
+  //     'What else you need to say?',
+  //     'https://bigfatburgers.com/wp-content/uploads/2019/07/DoubleBaconCheeseBurger.jpg',
+  //     [
+  //       new Ingredient('Buns', 1),
+  //       new Ingredient('Meat', 1)
+  //     ])
+  // ];
+
+  private recipes: Recipe[] = [];
 
   constructor(private shoppingListService: ShoppingListService) { }
 
