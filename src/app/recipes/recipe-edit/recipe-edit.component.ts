@@ -13,8 +13,12 @@ export class RecipeEditComponent implements OnInit {
   editMode = false;
   recipeForm: FormGroup;
 
+  get ingredients(): FormArray {
+    return (this.recipeForm.get('ingredients') as FormArray);
+  }
+
   get controls() {
-    return (this.recipeForm.get('ingredients') as FormArray).controls;
+    return this.ingredients.controls;
   }
 
   constructor(private route: ActivatedRoute,
@@ -45,12 +49,16 @@ export class RecipeEditComponent implements OnInit {
     this.onCancel();
   }
 
+  onDeleteIngredient(index: number) {
+    this.ingredients.removeAt(index);
+  }
+
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});
   }
 
   onAddIngredient() {
-    (this.recipeForm.get('ingredients') as FormArray).push(
+    this.ingredients.push(
       new FormGroup({
         'name': new FormControl(null, Validators.required),
         'amount': new FormControl(null, [
