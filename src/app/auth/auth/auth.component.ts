@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AuthResponseData, AuthService} from './auth.service';
+import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
+
+import {AuthResponseData, AuthService} from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -17,7 +19,8 @@ export class AuthComponent implements OnInit {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -39,6 +42,7 @@ export class AuthComponent implements OnInit {
       responseData => {
         console.log(responseData);
         this.isLoading = false;
+        this.router.navigate(['/recipes']);
       },
       errorMessage => {
         console.log(errorMessage);
