@@ -14,8 +14,6 @@ export class ShoppingListService {
     new Ingredient('Tomatos', 10)
   ];
 
-  constructor() { }
-
   getIngredients(): Ingredient[] {
     return this.ingredients.slice();
   }
