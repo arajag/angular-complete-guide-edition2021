@@ -14,7 +14,10 @@ import {SharedModule} from '../../../shared/shared.module';
   imports: [
     FormsModule,
     ShoppingListRoutingModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
+  // providers: [
+  //   LoggingService,
+  // ],
 })
 export class ShoppingListModule { }
