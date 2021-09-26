@@ -72,9 +72,9 @@ export class AuthEffects {
           password: signupAction.payload.password,
           returnSecureToken: true
         }).pipe(
-          tap(resData => {
-            this.authService.setLogoutTimer(+resData.expiresIn * 1000)
-          }),
+        tap(resData => {
+          this.authService.setLogoutTimer(+resData.expiresIn * 1000)
+        }),
         map(resData => handleAuthentication(+resData.expiresIn, resData.email, resData.localId, resData.idToken)),
         catchError(errorRes => handleError(errorRes))
       );
@@ -122,7 +122,7 @@ export class AuthEffects {
     ofType(AuthActions.AUTO_LOGIN),
     map(() => {
       const userData: UserData = JSON.parse(localStorage.getItem(storageUserData));
-      if (!userData) return {type:'DUMMY'};
+      if (!userData) return {type: 'DUMMY'};
       const loadedUser = new User(userData.email,
         userData.id,
         userData._token,
@@ -141,7 +141,7 @@ export class AuthEffects {
         });
         // this.autoLogout(expirationDuration);
       }
-      return {type:'DUMMY'};
+      return {type: 'DUMMY'};
     })
   );
 
