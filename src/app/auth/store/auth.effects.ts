@@ -130,8 +130,8 @@ export class AuthEffects {
       if (loadedUser.token) {
         // this.user.next(loadedUser);
         const expirationDuration = //
-          new Date(userData._tokenExpirationDate).getTime() //
-          - new Date().getTime();
+          new Date(userData._tokenExpirationDate).getTime() - //
+          new Date().getTime();
         this.authService.setLogoutTimer(expirationDuration);
         return new AuthActions.AuthenticateSuccess({
           email: loadedUser.email,
@@ -139,7 +139,6 @@ export class AuthEffects {
           token: loadedUser.token,
           expirationDate: new Date(userData._tokenExpirationDate)
         });
-        // this.autoLogout(expirationDuration);
       }
       return {type: 'DUMMY'};
     })
