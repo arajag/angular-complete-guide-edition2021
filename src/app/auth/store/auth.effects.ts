@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {catchError, map, switchMap} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 import * as AuthActions from './auth.actions';
 import {environment} from '../../../environments/environment';
-import {of} from 'rxjs';
 
 export interface AuthResponseData {
   idToken: 'string';
