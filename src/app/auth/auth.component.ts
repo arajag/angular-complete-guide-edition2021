@@ -2,9 +2,9 @@ import {Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild} from 
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 
-import {AuthResponseData, AuthService} from './auth.service';
+import {AuthService} from './auth.service';
 import {AlertComponent} from '../shared/alert/alert.component';
 import {PlaceholderDirective} from '../shared/placeholder/placeholder.directive';
 import * as fromApp from '../store/app.reducer';
@@ -48,26 +48,11 @@ export class AuthComponent implements OnInit, OnDestroy {
     const email = form.value.email;
     const password = form.value.password;
 
-    this.isLoading = true;
-    let authObs: Observable<AuthResponseData>;
     if (this.isLoginMode){
       this.store.dispatch(new AuthActions.LoginStart({email: email, password: password}))
     } else {
-      authObs = this.authService.signup(email, password);
+      this.store.dispatch(new AuthActions.SignupStart({email, password}));
     }
-
-    // authObs.subscribe(
-    //   responseData => {
-    //     console.log(responseData);
-    //     this.isLoading = false;
-    //     this.router.navigate(['/recipes']);
-    //   },
-    //   errorMessage => {
-    //     console.log(errorMessage);
-    //     this.error = errorMessage;
-    //     this.showErrorAlert(errorMessage);
-    //     this.isLoading = false;
-    //   });
     form.reset();
   }
 

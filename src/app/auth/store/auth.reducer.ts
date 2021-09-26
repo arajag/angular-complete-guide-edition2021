@@ -1,4 +1,4 @@
-import { User } from '../user.model';
+import {User} from '../user.model';
 import * as AuthActions from './auth.actions';
 
 export interface State {
@@ -38,6 +38,7 @@ export function authReducer(
         loading: false
       };
     case AuthActions.LOGIN_START:
+    case AuthActions.SIGNUP_START:
       return {
         ...state,
         authError: null,

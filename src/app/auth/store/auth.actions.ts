@@ -1,4 +1,4 @@
-import { Action } from '@ngrx/store';
+import {Action} from '@ngrx/store';
 
 export const LOGIN_START = '[Auth] Login Start';
 export const AUTHENTICATE_SUCCESS = '[Auth] Login';
@@ -16,7 +16,8 @@ export class AuthenticateSuccess implements Action {
       token: string;
       expirationDate: Date;
     }
-  ) {}
+  ) {
+  }
 }
 
 export class Logout implements Action {
@@ -34,7 +35,7 @@ export class AuthenticateFail implements Action {
 }
 
 export class SignupStart implements Action {
-  readonly type= SIGNUP_START;
+  readonly type = SIGNUP_START;
   constructor(public payload: {email: string, password: string}) {}
 }
 
