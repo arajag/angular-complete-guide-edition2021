@@ -1,9 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map, tap} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
 
 import {RecipeService} from '../recipes/recipe.service';
 import {Recipe} from '../recipes/recipe.model';
+import * as fromApp from '../store/app.reducer';
+import * as RecipesActions from '../recipes/store/recipe.actions';
 
 const firebaseApi = 'https://ng-course-recipe-book-74da8-default-rtdb.firebaseio.com/recipes.json';
 
@@ -13,7 +16,8 @@ const firebaseApi = 'https://ng-course-recipe-book-74da8-default-rtdb.firebaseio
 export class DataStorageService {
 
   constructor(private http: HttpClient,
-              private recipeService: RecipeService) {
+              private recipeService: RecipeService,
+              private store: Store<fromApp.AppState>) {
   }
 
   storeRecipes() {
@@ -31,7 +35,10 @@ export class DataStorageService {
           return {...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []};
         });
       }),
-      tap(recipes => this.recipeService.setRecipes(recipes))
+      tap(recipes => {
+        // this.recipeService.setRecipes(recipes)
+        this.store.dispatch(new RecipesActions.SetRecipes(recipes));
+      })
     );
   }
 }
