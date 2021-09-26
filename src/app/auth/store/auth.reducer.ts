@@ -48,6 +48,7 @@ export function authReducer(
         ...state,
         user: null,
         authError: action.payload,
+        loading: false
       }
     default:
       return state;
