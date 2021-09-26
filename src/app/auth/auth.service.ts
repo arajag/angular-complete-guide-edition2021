@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Store} from '@ngrx/store';
-import {BehaviorSubject, throwError} from 'rxjs';
+import {throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {User} from './user.model';
 import {Router} from '@angular/router';
-import { environment } from '../../environments/environment';
+import {environment} from '../../environments/environment';
 import * as fromApp from '../store/app.reducer';
 import * as AuthActions from './store/auth.actions';
 
@@ -24,7 +24,6 @@ const userDataLocalStorage = 'userData';
   providedIn: 'root'
 })
 export class AuthService {
-  // user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient,
