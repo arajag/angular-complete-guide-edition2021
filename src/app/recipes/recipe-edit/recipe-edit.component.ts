@@ -47,11 +47,6 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    // const newRecipe = new Recipe(
-    //   this.recipeForm.value['name'],
-    //   this.recipeForm.value['description'],
-    //   this.recipeForm.value['imagePath'],
-    //   this.recipeForm.value['ingredients']);
     if (this.editMode) {
       this.store.dispatch(new RecipesActions.UpdateRecipe({index: this.id, newRecipe: this.recipeForm.value}));
     } else {
@@ -80,7 +75,6 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     );
   }
 
-
   private initForm() {
     let recipeName = '';
     let recipeImage = '';
@@ -88,7 +82,6 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     let recipeIngredients = new FormArray([]);
 
     if (this.editMode) {
-      // const recipe = this.recipeService.getRecipe(this.id);
       this.storeSub = this.store.select('recipes').pipe(
         map(recipeState => {
           return recipeState.recipes.find((recipe, index) => {
